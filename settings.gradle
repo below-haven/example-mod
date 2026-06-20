@@ -1,0 +1,21 @@
+pluginManagement {
+	includeBuild("../shuttle") // adjust path from that project to this repo
+
+	repositories {
+		gradlePluginPortal()
+		mavenCentral()
+	}
+}
+
+dependencyResolutionManagement {
+	repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+	repositories {
+		maven {
+			name = "Fabric"
+			url = "https://maven.fabricmc.net/"
+		}
+		mavenCentral()
+	}
+}
+
+rootProject.name = "bh-test-mod"

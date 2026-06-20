@@ -1,0 +1,68 @@
+plugins {
+	id "java"
+	id "below-haven.shuttle"
+}
+
+shuttle {
+	gameVersion = "20260616094641"
+}
+
+def modId = project.mod_id
+def modName = project.mod_name
+def modVersion = project.mod_version
+def modGroup = project.mod_group
+def fabricLoaderVersion = project.fabric_loader_version
+def mixinVersion = project.mixin_version
+
+group = modGroup
+version = modVersion
+
+base {
+	archivesName = modId
+}
+
+java {
+	toolchain {
+		languageVersion = JavaLanguageVersion.of(25)
+	}
+}
+
+tasks.withType(JavaCompile).configureEach {
+	options.encoding = "UTF-8"
+	options.release = 25
+}
+
+dependencies {
+	compileOnly "net.fabricmc:fabric-loader:${fabricLoaderVersion}"
+	compileOnly "net.fabricmc:sponge-mixin:${mixinVersion}"
+}
+
+processResources {
+	inputs.property "mod_id", modId
+	inputs.property "mod_name", modName
+	inputs.property "mod_version", modVersion
+	inputs.property "fabric_loader_version", fabricLoaderVersion
+
+	filesMatching("fabric.mod.json") {
+		expand(
+			mod_id: modId,
+			mod_name: modName,
+			mod_version: modVersion,
+			fabric_loader_version: fabricLoaderVersion
+		)
+	}
+}
+
+jar {
+	from("LICENSE") {
+		rename { "${it}_${modId}" }
+	}
+
+	manifest {
+		attributes(
+			"Implementation-Title": modName,
+			"Implementation-Version": modVersion,
+			"Fabric-Loom-Remap": "false"
+		)
+	}
+}

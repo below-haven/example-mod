@@ -1,0 +1,11 @@
+{
+  "required": false,
+  "package": "com.bh.testmod.mixin",
+  "compatibilityLevel": "JAVA_8",
+  "mixins": [
+    "MainLog", "NetworkLog", "MapCommand"
+  ],
+  "injectors": {
+    "defaultRequire": 0
+  }
+}
