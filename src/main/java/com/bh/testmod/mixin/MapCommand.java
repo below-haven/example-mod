@@ -17,7 +17,7 @@ public abstract class MapCommand {
     @Shadow
     private CrowdContext _ctx;
 
-    @Inject(method = "method_6095", at = @At("HEAD"), require = 1)
+    @Inject(method = "method_6095", at = @At("HEAD"), cancellable = true, require = 1)
     protected void something(Class_1543 v1, String v2, boolean i3, CallbackInfoReturnable<String> cir) {
         if ("/testcommand".equals(v2)) {
             ProjectXContext v4 = (ProjectXContext) this._ctx;
