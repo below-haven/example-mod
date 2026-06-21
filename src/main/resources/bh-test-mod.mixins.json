@@ -3,7 +3,7 @@
   "package": "com.bh.testmod.mixin",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
-    "MainLog", "NetworkLog", "MapCommand"
+    "MainLog", "BlockingCommunicatorMixin", "MapCommand"
   ],
   "injectors": {
     "defaultRequire": 0
